@@ -1,0 +1,5 @@
+Checks: '-*,tls-*'
+WarningsAsErrors: ''
+HeaderFilterRegex: '.*'
+FormatStyle: none
+
