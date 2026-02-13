@@ -19,7 +19,7 @@ add_definitions(${LLVM_DEFINITIONS})
 
 add_library(TlsTidyModule MODULE
   module/TlsChecksModule.cpp
-  checks/ModuleLoadedCheck.cpp
+  checks/DisableVerifyCheck.cpp
 )
 
 # Make sure the module has a predictable output name.
