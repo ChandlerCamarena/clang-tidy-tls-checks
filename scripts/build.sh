@@ -3,6 +3,10 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-cmake -S "$ROOT/src" -B "$ROOT/build" -G Ninja
+# Configure only if build system isn't generated yet
+if [[ ! -f "$ROOT/build/build.ninja" && ! -f "$ROOT/build/Makefile" ]]; then
+  cmake -S "$ROOT/src" -B "$ROOT/build" -G Ninja
+fi
+
 cmake --build "$ROOT/build"
 
