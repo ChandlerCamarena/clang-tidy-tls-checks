@@ -13,5 +13,10 @@ clang-tidy -quiet -p "$ROOT/demo" \
   "$ROOT/demo/bad/disable_verify.c" \
   "$ROOT/demo/good/verify_peer.c" \
   "$ROOT/demo/bad/insecure_method.c" \
-  "$ROOT/demo/good/tls_method.c"
+  "$ROOT/demo/good/tls_method.c" \
+  "$ROOT/demo/bad/disable_verify_ssl.c" \
+  "$ROOT/demo/good/verify_peer_ssl.c" \
+  "$ROOT/demo/bad/insecure_client_method.c" \
+  "$ROOT/demo/good/tls_client_method.c"
+
 

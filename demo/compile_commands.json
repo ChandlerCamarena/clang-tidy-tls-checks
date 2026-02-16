@@ -18,6 +18,27 @@
     "directory": "/home/chand/clang-tidy-tls-checks",
     "command": "clang -I/usr/include -I/usr/include/openssl -DOPENSSL_API_COMPAT=0x10100000L -Wno-deprecated-declarations -c demo/good/tls_method.c",
     "file": "demo/good/tls_method.c"
-  }
+  },
+  {
+  "directory": "/home/chand/clang-tidy-tls-checks",
+  "command": "clang -I/usr/include -I/usr/include/openssl -DOPENSSL_API_COMPAT=0x10100000L -Wno-deprecated-declarations -c demo/bad/disable_verify_ssl.c",
+  "file": "demo/bad/disable_verify_ssl.c"
+},
+{
+  "directory": "/home/chand/clang-tidy-tls-checks",
+  "command": "clang -I/usr/include -I/usr/include/openssl -DOPENSSL_API_COMPAT=0x10100000L -Wno-deprecated-declarations -c demo/good/verify_peer_ssl.c",
+  "file": "demo/good/verify_peer_ssl.c"
+},
+{
+  "directory": "/home/chand/clang-tidy-tls-checks",
+  "command": "clang -I/usr/include -I/usr/include/openssl -DOPENSSL_API_COMPAT=0x10100000L -Wno-deprecated-declarations -c demo/bad/insecure_client_method.c",
+  "file": "demo/bad/insecure_client_method.c"
+},
+{
+  "directory": "/home/chand/clang-tidy-tls-checks",
+  "command": "clang -I/usr/include -I/usr/include/openssl -DOPENSSL_API_COMPAT=0x10100000L -Wno-deprecated-declarations -c demo/good/tls_client_method.c",
+  "file": "demo/good/tls_client_method.c"
+}
+
 ]
 
