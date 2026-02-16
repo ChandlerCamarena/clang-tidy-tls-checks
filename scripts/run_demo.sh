@@ -3,7 +3,11 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-clang-tidy -p "$ROOT/demo" \
+# Ensure plugin exists
+"$ROOT/scripts/build.sh"
+
+# Run ONLY our checks, quietly (no extra tidy noise)
+clang-tidy -quiet -p "$ROOT/demo" \
   -load "$ROOT/build/TlsTidyModule.so" \
   -checks='-*,tls-*' \
   "$ROOT/demo/bad/disable_verify.c" \

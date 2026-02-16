@@ -11,8 +11,8 @@ Week 1 implementation targets are marked with ★.
 
 | ID  | Pattern | AST-Detectable Condition | Risk | Safer Alternative |
 |-----|---------|--------------------------|------|------------------|
-| T1 ★ | Certificate verification disabled | `SSL_CTX_set_verify(..., SSL_VERIFY_NONE, ...)` or `SSL_set_verify(..., SSL_VERIFY_NONE, ...)` | MITM possible | Use `SSL_VERIFY_PEER` and enforce strict verification policy |
-| T2 ★ | Insecure protocol method | `SSLv2_method`, `SSLv3_method`, `TLSv1_method`, `TLSv1_1_method` (including client/server variants) | Weak / obsolete TLS | Use `TLS_method()`, `TLS_client_method()`, or `TLS_server_method()` |
+| T1 ✓ | Certificate verification disabled | `SSL_CTX_set_verify(..., SSL_VERIFY_NONE, ...)` or `SSL_set_verify(..., SSL_VERIFY_NONE, ...)` | MITM possible | Use `SSL_VERIFY_PEER` and enforce strict verification policy |
+| T2 ✓ | Insecure protocol method | `SSLv2_method`, `SSLv3_method`, `TLSv1_method`, `TLSv1_1_method` (including client/server variants) | Weak / obsolete TLS | Use `TLS_method()`, `TLS_client_method()`, or `TLS_server_method()` |
 | T3 | Accept-all verify callback | Verify callback returns constant `1` or ignores `preverify_ok` | MITM possible | Return `preverify_ok` or enforce explicit validation logic |
 | T4 | Verify result ignored | `SSL_get_verify_result(ssl)` return value unused | Verification not enforced | Compare return value against `X509_V_OK` |
 | T5 | Handshake result ignored | Return value of `SSL_connect`, `SSL_accept`, or `SSL_do_handshake` unused | Silent failure / insecure fallback | Check return value and handle errors via OpenSSL APIs |
