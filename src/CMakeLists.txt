@@ -20,6 +20,7 @@ add_definitions(${LLVM_DEFINITIONS})
 add_library(TlsTidyModule MODULE
   module/TlsChecksModule.cpp
   checks/DisableVerifyCheck.cpp
+  checks/InsecureProtocolMethodCheck.cpp
 )
 
 # Make sure the module has a predictable output name.

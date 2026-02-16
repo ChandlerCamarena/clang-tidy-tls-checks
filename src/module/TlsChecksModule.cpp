@@ -1,3 +1,4 @@
+#include "../checks/InsecureProtocolMethodCheck.h"
 #include "../checks/DisableVerifyCheck.h"
 
 #include "clang-tidy/ClangTidyModule.h"
@@ -10,6 +11,9 @@ public:
   void addCheckFactories(ClangTidyCheckFactories &Factories) override {
     Factories.registerCheck<DisableVerifyCheck>(
         "tls-cert-verify-disabled");
+    Factories.registerCheck<DisableVerifyCheck>("tls-cert-verify-disabled");
+    Factories.registerCheck<InsecureProtocolMethodCheck>("tls-insecure-proto-method");
+
   }
 };
 

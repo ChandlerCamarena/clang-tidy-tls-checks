@@ -7,5 +7,7 @@ clang-tidy -p "$ROOT/demo" \
   -load "$ROOT/build/TlsTidyModule.so" \
   -checks='-*,tls-*' \
   "$ROOT/demo/bad/disable_verify.c" \
-  "$ROOT/demo/good/verify_peer.c"
+  "$ROOT/demo/good/verify_peer.c" \
+  "$ROOT/demo/bad/insecure_method.c" \
+  "$ROOT/demo/good/tls_method.c"
 
