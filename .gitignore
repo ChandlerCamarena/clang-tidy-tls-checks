@@ -1,15 +1,17 @@
-# build artifacts
 build/
+cc-results/
+events.csv
 *.so
 *.o
 *.a
-*.dylib
-*.dll
-
-# editor
-.vscode/
-.idea/
-
-# OS
-.DS_Store
-
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+build.ninja
+.ninja_deps
+.ninja_log
+__pycache__/
+*.pyc
+*.orig
+*.bak

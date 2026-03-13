@@ -1,5 +1,3 @@
-Checks: '-*,tls-*'
+Checks: '-*,security-misc-padding-boundary-leak'
 WarningsAsErrors: ''
 HeaderFilterRegex: '.*'
-FormatStyle: none
-
