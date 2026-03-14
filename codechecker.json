@@ -1,25 +1,28 @@
 {
   "__comment__": [
-    "CodeChecker analyze configuration for the thesis padding-leak prototype.",
-    "Usage: CodeChecker analyze compile_commands.json --config codechecker.json -o ./cc-results",
-    "Then:  CodeChecker parse ./cc-results",
-    "Or:    CodeChecker parse ./cc-results --export json -o results.json",
+    "CodeChecker analyzer profile for the thesis padding-leak prototype.",
     "",
-    "IMPORTANT: set PLUGIN_PATH below to the absolute path of your built .so,",
-    "e.g.  /home/user/clang-tidy-tls-checks/build/SecurityMiscPlugin.so"
+    "Usage:",
+    "  1. Build the plugin:  bash scripts/build.sh",
+    "  2. Set the plugin path in the environment:",
+    "       export PLUGIN_PATH=/absolute/path/to/build/SecurityMiscPlugin.so",
+    "  3. Create a tidyargs file:",
+    "       echo \"-load $PLUGIN_PATH -checks=-*,security-misc-padding-boundary-leak\" > /tmp/tidy_args.txt",
+    "  4. Run analysis:",
+    "       CodeChecker analyze compile_commands.json \\",
+    "         --config codechecker.json \\",
+    "         --analyzer-config clang-tidy:cc-verbatim-args-file=/tmp/tidy_args.txt \\",
+    "         -o ./cc-results",
+    "  5. Parse results:",
+    "       CodeChecker parse ./cc-results",
+    "",
+    "NOTE: The run_codechecker.sh script handles steps 2-5 automatically.",
+    "This file documents the CodeChecker configuration options used."
   ],
   "analyze": [
     "--analyzers", "clang-tidy",
-
-    "--tidyargs",
-    "-load __PLUGIN_PATH__ -checks=-*,security-misc-padding-boundary-leak,tls-cert-verify-disabled,tls-insecure-proto-method",
-
     "--jobs", "4",
-
-    "--output", "./cc-results",
-
-    "--analyzer-config",
-    "clang-tidy:HeaderFilterRegex=.*"
+    "--output", "./cc-results"
   ],
   "parse": [
     "--trim-path-prefix", "."
