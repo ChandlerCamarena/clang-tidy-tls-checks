@@ -53,7 +53,7 @@ static void digest32(const void *data, size_t n, uint8_t out[32]) {
 //
 // HasPadding(HandshakeState) = true
 // ---------------------------------------------------------------------------
-typedef struct {
+typedef struct HandshakeState_s{
     uint8_t  version;   /* 1 byte  */
     /* ABI inserts ~7 bytes padding here to align nonce to 8 bytes */
     uint64_t nonce;     /* 8 bytes */
