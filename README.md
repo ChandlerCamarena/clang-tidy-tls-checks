@@ -23,9 +23,12 @@ The thesis PDF is included in this repository as `Camarena_Thesis.pdf`.
 bash scripts/build.sh
 
 # 2. Run the synthetic benchmark suite (Appendix A)
-bash scripts/run_synthetic.sh
+clang-tidy \
+  -load build/SecurityMiscPlugin.so \
+  -checks='-*,security-misc-padding-boundary-leak' \
+  synthetic_benchmarks/trust_boundary/benchmarks.c -- -I./include
 
-# 3. Reproduce the full thesis evaluation (requires cloning evaluated libraries)
+# 3. Reproduce the full thesis evaluation (clones and runs all 4 libraries)
 bash scripts/reproduce_all.sh
 ```
 
@@ -47,16 +50,18 @@ clang-padding-leakage-checker/
 │   └── module/
 │       └── SecurityMiscModule.cpp               # plugin entry point
 ├── synthetic_benchmarks/
-│   └── benchmarks.c                  # all 8 validation cases (Appendix A)
+│   ├── trust_boundary/
+│   │   └── benchmarks.c              # all 8 validation cases (Appendix A)
+│   └── cross_family/
+│       └── tb_representation_leak_crypto.c      # cross-family DM+CM example
 ├── evaluated_libraries/              # annotated versions of the 4 evaluated projects
 │   ├── README.md                     # what was annotated and why
-│   ├── zlib/                         # annotated source files only
+│   ├── zlib/
 │   ├── libuv/
 │   ├── raylib/
 │   └── chipmunk2d/
 ├── scripts/
 │   ├── build.sh                      # build the plugin
-│   ├── run_synthetic.sh              # run and validate synthetic benchmarks
 │   ├── run_codechecker.sh            # run CodeChecker on a single project
 │   ├── collect_metrics.py            # parse event log → thesis Tables 8.2–8.3
 │   └── reproduce_all.sh             # clone libraries, apply annotations, run all
@@ -221,11 +226,14 @@ bash scripts/run_codechecker.sh /path/to/project compile_commands.json
 
 ## Synthetic Benchmark Suite (Appendix A)
 
-`synthetic_benchmarks/benchmarks.c` contains all 8 validation cases from
-Appendix A. Run and validate in one step:
+`synthetic_benchmarks/trust_boundary/benchmarks.c` contains all 8 validation
+cases from Appendix A:
 
 ```bash
-bash scripts/run_synthetic.sh
+clang-tidy \
+  -load build/SecurityMiscPlugin.so \
+  -checks='-*,security-misc-padding-boundary-leak' \
+  synthetic_benchmarks/trust_boundary/benchmarks.c -- -I./include
 ```
 
 Expected results:

@@ -19,3 +19,4 @@ synthetic_events.csv
 _reproduce/
 _results/
 _logs/
+build/
