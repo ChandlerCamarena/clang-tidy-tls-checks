@@ -15,3 +15,7 @@ __pycache__/
 *.pyc
 *.orig
 *.bak
+synthetic_events.csv
+_reproduce/
+_results/
+_logs/
